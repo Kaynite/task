@@ -62,7 +62,7 @@
                             <!--begin::Menu separator-->
                             <div class="separator my-2"></div>
                             <div class="menu-item px-5">
-                                <a href="{{ route('profile') }}" class="menu-link px-5">@lang('admin.profile')</a>
+                                <a href="#" class="menu-link px-5">@lang('admin.profile')</a>
                             </div>
                             <div class="separator my-2"></div>
                             <div class="menu-item px-5" data-kt-menu-trigger="hover" data-kt-menu-placement="left-start" data-kt-menu-flip="bottom, top">
@@ -88,13 +88,10 @@
                                 </div>
                             </div>
                             <div class="menu-item px-5 my-1">
-                                <a href="../../demo1/dist/account/settings.html" class="menu-link px-5">Account Settings</a>
+                                <a href="#" class="menu-link px-5">Account Settings</a>
                             </div>
                             <div class="menu-item px-5">
-                                <a onclick="document.getElementById('logout-form').submit()" class="menu-link px-5">@lang('admin.sign out')</a>
-                                <form action="{{ route('logout') }}" method="post" id="logout-form">
-                                    @csrf
-                                </form>
+                                <a class="menu-link px-5">@lang('admin.sign out')</a>
                             </div>
                         </div>
                     </div>

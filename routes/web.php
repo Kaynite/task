@@ -18,13 +18,7 @@ use Illuminate\Support\Facades\Route;
  */
 
 Route::get('/', HomeController::class)->name('home');
-Route::get('profile', [ProfileController::class, 'view'])->name('profile');
-// Route::post('profile', [ProfileController::class, 'updateProfile']);
-// Route::post('profile/update-password', [ProfileController::class, 'updatePassword'])->name('profile.change-password');
-Route::resource('users', UserController::class)->except('show');
 
 Route::resource('clients', ClientController::class)->only('index', 'create', 'store');
 Route::resource('products', ProductController::class)->only('index', 'create', 'store');
 Route::resource('invoices', InvoiceController::class)->only('index', 'create', 'store');
-
-require __DIR__ . '/auth.php';
