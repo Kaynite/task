@@ -16,7 +16,7 @@ class CreateInvoice extends Component
     public $client_id;
 
     public $product;
-    public $quantity;
+    public $quantity = 0;
 
     public function render()
     {
@@ -26,7 +26,12 @@ class CreateInvoice extends Component
         ]);
     }
 
-    public function saveInvoice()
+    /**
+     * Save invoice data.
+     *
+     * @return void
+     */
+    public function saveInvoice(): void
     {
         $this->invoice = Invoice::create([
             'number'    => $this->number,
@@ -35,20 +40,40 @@ class CreateInvoice extends Component
         ]);
     }
 
-    public function addProduct()
+    /**
+     * Handle adding product to the invoice.
+     *
+     * @return void
+     */
+    public function addProduct(): void
     {
-        if($this->invoice) {
-            $product = Product::findOrFail($this->product);
+        if ($this->invoice) {
+            $this->validate();
+
+            $product = Product::find($this->product);
 
             $this->invoice->products()->attach($product, [
                 'quantity' => $this->quantity,
-                'price' => $product->price
+                'price'    => $product->price,
             ]);
 
             $this->invoice->refresh();
 
-            $this->product = null;
-            $this->quantity = null;
+            $this->product  = null;
+            $this->quantity = 0;
         }
+    }
+
+    /**
+     * Validation rules.
+     *
+     * @return array
+     */
+    protected function rules(): array
+    {
+        return [
+            'product'  => ['required', 'exists:products,id'],
+            'quantity' => ['required', 'numeric', 'min:1'],
+        ];
     }
 }

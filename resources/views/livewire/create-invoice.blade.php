@@ -47,12 +47,18 @@
                             <option value="{{ $product->id }}">{{ $product->name }} ({{ $product->price }})</option>
                         @endforeach
                     </select>
+                    @error('product')
+                        <small class="text-danger">{{ $message }}</small>
+                    @enderror
                 </div>
             </div>
             <div class="col-md-2">
                 <div class="form-group">
                     <label>Quantity</label>
                     <input type="number" class="form-control form-control-solid" wire:model.defer="quantity">
+                    @error('quantity')
+                        <small class="text-danger">{{ $message }}</small>
+                    @enderror
                 </div>
             </div>
             <div class="col-md-2">
