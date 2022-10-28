@@ -21,4 +21,4 @@ Route::get('/', HomeController::class)->name('home');
 
 Route::resource('clients', ClientController::class)->only('index', 'create', 'store');
 Route::resource('products', ProductController::class)->only('index', 'create', 'store');
-Route::resource('invoices', InvoiceController::class)->only('index', 'create', 'store');
+Route::resource('invoices', InvoiceController::class)->only('index', 'create');
